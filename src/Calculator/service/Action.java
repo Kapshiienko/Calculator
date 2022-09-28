@@ -17,7 +17,7 @@ public class Action {
             if ((actionWithNumber.contains("*")) || (actionWithNumber.contains("m"))) {
                 doMulty(actionWithNumber, lb);
             } else if ((actionWithNumber.contains("/")) || (actionWithNumber.contains("d"))) {
-                doDivision(actionWithNumber, lb);
+//                doDivision(actionWithNumber, lb);
             } else {
                 double currentDigit = Double.parseDouble(actionWithNumber);
                 lb.getListForNumbersToAction().add(currentDigit);
@@ -42,17 +42,17 @@ public class Action {
         lb.getListForNumbersToAction().add(resultOfAction);
     }
 
-    private void doDivision(String actionWithNumber, ListBuffer listBuffer) {
-        String firstReplace = actionWithNumber.replace("d", "-");
-        String secondReplace = firstReplace.replace("/", "");
-        double nextDigit = Double.parseDouble(secondReplace);
-        listBuffer.getListForNumbersToAction().add(nextDigit);
-        double currentDigit = listBuffer.getListForNumbersToAction().get(listBuffer.getListForNumbersToAction().size() - 2);
-        double resultOfAction = currentDigit / nextDigit;
-        listBuffer.getListForNumbersToAction().remove(currentDigit);
-        listBuffer.getListForNumbersToAction().remove(nextDigit);
-        listBuffer.getListForNumbersToAction().add(resultOfAction);
-    }
+//    private void doDivision(String actionWithNumber, ListBuffer listBuffer) {
+//        String firstReplace = actionWithNumber.replace("d", "-");
+//        String secondReplace = firstReplace.replace("/", "");
+//        double nextDigit = Double.parseDouble(secondReplace);
+//        listBuffer.getListForNumbersToAction().add(nextDigit);
+//        double currentDigit = listBuffer.getListForNumbersToAction().get(listBuffer.getListForNumbersToAction().size() - 2);
+//        double resultOfAction = currentDigit / nextDigit;
+//        listBuffer.getListForNumbersToAction().remove(currentDigit);
+//        listBuffer.getListForNumbersToAction().remove(nextDigit);
+//        listBuffer.getListForNumbersToAction().add(resultOfAction);
+//    }
 
     public String[] doRegexBeforeAction(String action) {
         String replaceBrackets = action.replaceAll("[, ]|\\[|\\]", "");

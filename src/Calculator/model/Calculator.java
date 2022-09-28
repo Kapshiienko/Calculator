@@ -1,4 +1,4 @@
-package Calculator.main;
+package Calculator.model;
 
 import Calculator.service.*;
 import Calculator.validator.Validator;
