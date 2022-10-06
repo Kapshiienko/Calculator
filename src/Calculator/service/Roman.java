@@ -99,16 +99,17 @@ public class Roman {
    public String isResultInRomanValid(double sum, ListBuffer lb) {
         if (sum < 4000
                 && sum > 0) {
-            String romans = numberToRoman(sum, lb);
+            String romans = numberToRoman(sum);
             lb.getListForRomanChars().removeAll(lb.getListForRomanChars());
             return romans.replaceAll("[, ]|[\\[]|[\\]]", "");
         }
         return null;
     }
 
-    public String numberToRoman(double sum, ListBuffer lb) {
-        char[] roman = {'I', 'X', 'C', 'M', 'D', 'L', 'V'};
+    public String numberToRoman(double sum) {
         int sumInt = Math.toIntExact(Math.round(sum));
+        String[] roman = {"I", "X", "C", "M", "D", "L", "V"};
+        StringBuilder romanNumber = new StringBuilder();
         for (int i = 0; ; i++) {
             if (sumInt == 0) {
                 break;
@@ -116,30 +117,24 @@ public class Roman {
             int lastNumber = sumInt % 10;
             sumInt /= 10;
             switch (lastNumber) {
-                case 1, 2, 3 -> {
-                    for (int j = lastNumber; j > 0; j--) {
-                        lb.getListForRomanChars().add(roman[i]);
-                    }
-                }
+                case 1, 2, 3 -> romanNumber.append(roman[i].repeat(lastNumber));
                 case 4 -> {
-                    lb.getListForRomanChars().add(roman[roman.length - 1 - i]);
-                    lb.getListForRomanChars().add(roman[i]);
+                    romanNumber.append(roman[roman.length - 1 - i]);
+                    romanNumber.append(roman[i]);
                 }
-                case 5 -> lb.getListForRomanChars().add(roman[roman.length - 1 - i]);
+                case 5 -> romanNumber.append(roman[roman.length - 1 - i]);
                 case 6, 7, 8 -> {
-                    for (int j = lastNumber; j > 5; j--) {
-                        lb.getListForRomanChars().add(roman[i]);
-                    }
-                    lb.getListForRomanChars().add(roman[roman.length - 1 - i]);
+                    romanNumber.append(roman[i].repeat(Math.max(0, lastNumber - 5)));
+                    romanNumber.append(roman[roman.length - 1 - i]);
                 }
                 case 9 -> {
-                    lb.getListForRomanChars().add(roman[i + 1]);
-                    lb.getListForRomanChars().add(roman[i]);
+                    romanNumber.append(roman[i + 1]);
+                    romanNumber.append(roman[i]);
                 }
             }
         }
-        Collections.reverse(lb.getListForRomanChars());
-        return lb.getListForRomanChars().toString();
+        romanNumber.reverse();
+        return romanNumber.toString();
     }
 }
 
