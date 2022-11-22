@@ -1,6 +1,5 @@
 package Calculator.service;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.ListIterator;
 import java.util.Map;
