@@ -128,7 +128,7 @@ public class RomanValidator {
             }
             if (secondChar.equals(romans[nextRomanDecimal])
                     || secondChar.equals(romans[romanHalfDecimal])) {
-                if (thirdIndex <= listSize) {
+                if (thirdIndex < listSize) {
                     Character thirdChar = lb.getListForCharsFromExample().get(thirdIndex);
                     if (thirdChar.equals(romans[romanDecimal])
                             || thirdChar.equals(romans[romanHalfDecimal])) {
